@@ -14,8 +14,11 @@ I got the task to create a mini Angular PWA with a Product Listing Page (PLP), a
 ### Getting started
 
 ```bash
-npm install
+npm install               # install dependencies
 npm start                 # dev server
+npm run build             # build the app
+npm test                  # execute unit tests
+npm run serve:ssr:shop    # run ssr node process (build first!!!)
 ```
 
 
@@ -48,5 +51,9 @@ npm start                 # dev server
 
 #### Assumptions & Trade-Offs
 
-### What I would improve with more time
+### What I would improve with more time / "in production"
+- I would use the project's 
+  - branching model
+  - commit message conventions
+  - linter
 
