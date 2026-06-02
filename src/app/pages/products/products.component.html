@@ -3,4 +3,9 @@
   subTitle="{{ 'products.subTitle' | translate }}"
 ></haefele-page-header>
 
-<haefele-product-grid [products]="(products$ | async) ?? []"></haefele-product-grid>
+<haefele-store-loading
+  [status]="productsLoadingStatus$ | async"
+  [error]="productsLoadingError$ | async"
+>
+  <haefele-product-grid [products]="products$ | async"></haefele-product-grid>
+</haefele-store-loading>

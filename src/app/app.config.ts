@@ -1,3 +1,4 @@
+import { provideHttpClient, withFetch } from "@angular/common/http";
 import {
 	type ApplicationConfig,
 	DEFAULT_CURRENCY_CODE,
@@ -12,17 +13,33 @@ import {
 } from "@angular/platform-browser";
 import { provideRouter } from "@angular/router";
 import { provideServiceWorker } from "@angular/service-worker";
+import { provideEffects } from "@ngrx/effects";
+import { provideState, provideStore } from "@ngrx/store";
+import { provideStoreDevtools } from "@ngrx/store-devtools";
 import {
 	provideTranslateLoader,
 	provideTranslateService,
 } from "@ngx-translate/core";
 import { routes } from "./app.routes";
+import { ProductsEffects } from "./core/store/products/products.effects";
+import { productsFeature } from "./core/store/products/products.feature";
 import { BundledTranslateLoader } from "./i18n/translate.loader";
 
 export const appConfig: ApplicationConfig = {
 	providers: [
 		provideBrowserGlobalErrorListeners(),
+		provideHttpClient(withFetch()),
 		provideRouter(routes),
+		provideStore(),
+		provideStoreDevtools({
+			maxAge: 25,
+			logOnly: !isDevMode(),
+			connectInZone: true,
+			trace: true,
+			traceLimit: 75,
+		}),
+		provideState(productsFeature),
+		provideEffects(ProductsEffects),
 		provideClientHydration(withEventReplay(), withHttpTransferCacheOptions({})),
 		provideTranslateService({
 			lang: "de",

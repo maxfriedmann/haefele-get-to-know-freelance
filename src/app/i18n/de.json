@@ -30,5 +30,8 @@
     "subTitle": "Entdecken Sie die Welt der hochwertigen Produkte und innovativen Lösungen bei Häfele. Unser Shop bietet Ihnen eine breite Auswahl an Artikeln, die Ihren Alltag bereichern und Ihre Projekte erfolgreich machen. Stöbern Sie durch unser Sortiment und finden Sie das perfekte Produkt für Ihre Bedürfnisse.",
     "topRatedProducts": "Produkte mit guter Bewertung",
     "allProducts": "Zeige alle Produkte"
+  },
+  "errors": {
+    "generic": "Beim Laden der Daten ist ein Fehler aufgetreten."
   }
 }
