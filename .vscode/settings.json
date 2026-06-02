@@ -16,10 +16,12 @@
 		"editor.defaultFormatter": "biomejs.biome"
 	},
 	"[html]": {
-		"editor.defaultFormatter": "vscode.html-language-features"
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"cSpell.words": ["haefele"],
 	"[markdown]": {
 		"editor.defaultFormatter": "yzhang.markdown-all-in-one"
-	}
+	},
+	"i18n-ally.localesPaths": ["src/app/i18n"],
+	"i18n-ally.keystyle": "nested"
 }

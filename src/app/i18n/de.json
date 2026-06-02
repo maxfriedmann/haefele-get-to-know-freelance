@@ -1,7 +1,34 @@
 {
-	"nav": {
-		"home": "Startseite",
-		"products": "Produkte",
-		"cart": "Warenkorb"
-	}
+  "nav": {
+    "home": "Startseite",
+    "products": "Produkte",
+    "cart": "Warenkorb"
+  },
+  "products": {
+    "addToCart": "In den Warenkorb",
+    "title": "Unsere Produkte",
+    "subTitle": "Entdecken Sie unsere vielfältige Auswahl an hochwertigen Produkten, die Ihren Bedürfnissen gerecht werden. Von innovativen Lösungen bis hin zu bewährten Klassikern bieten wir eine breite Palette an Optionen, um Ihren Alltag zu bereichern. Stöbern Sie durch unser Sortiment und finden Sie das perfekte Produkt, das Ihren Anforderungen entspricht.",
+    "relatedProducts": "Verwandte Produkte",
+    "articleNumber": "Artikelnummer",
+    "category": "Kategorie",
+    "reviews": "Bewertungen",
+    "sort": {
+      "sortBy": "Sortieren nach",
+      "none": "Standard",
+      "titleAsc": "Name (A–Z)",
+      "titleDesc": "Name (Z–A)",
+      "priceAsc": "Preis aufsteigend",
+      "priceDesc": "Preis absteigend",
+      "ratingAsc": "Bewertung aufsteigend",
+      "ratingDesc": "Bewertung absteigend"
+    },
+    "searchPlaceholder": "Produkt Liste durchsuchen...",
+    "noProductsFound": "Keine Produkte gefunden"
+  },
+  "home": {
+    "title": "Willkommen im Häfele Shop",
+    "subTitle": "Entdecken Sie die Welt der hochwertigen Produkte und innovativen Lösungen bei Häfele. Unser Shop bietet Ihnen eine breite Auswahl an Artikeln, die Ihren Alltag bereichern und Ihre Projekte erfolgreich machen. Stöbern Sie durch unser Sortiment und finden Sie das perfekte Produkt für Ihre Bedürfnisse.",
+    "topRatedProducts": "Produkte mit guter Bewertung",
+    "allProducts": "Zeige alle Produkte"
+  }
 }

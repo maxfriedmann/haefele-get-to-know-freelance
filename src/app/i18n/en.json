@@ -1,7 +1,32 @@
 {
-	"nav": {
-		"home": "Home",
-		"products": "Products",
-		"cart": "Cart"
-	}
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "cart": "Cart"
+  },
+  "products": {
+    "addToCart": "Add to Cart",
+    "title": "Our Products",
+    "subTitle": "Discover our wide range of high-quality products that meet your needs. From innovative solutions to proven classics, we offer a broad selection of options to enrich your daily life. Browse our assortment and find the perfect product that suits your requirements.",
+    "relatedProducts": "Related Products",
+    "articleNumber": "Article Number",
+    "category": "Category",
+    "reviews": "Ratings",
+    "sort": {
+      "sortBy": "Sort by",
+      "none": "Default",
+      "titleAsc": "Name (A–Z)",
+      "titleDesc": "Name (Z–A)",
+      "priceAsc": "Price Ascending",
+      "priceDesc": "Price Descending",
+      "ratingAsc": "Rating Ascending",
+      "ratingDesc": "Rating Descending"
+    },
+    "searchPlaceholder": "search this product list...",
+    "noProductsFound": "No products found"
+  },
+  "home": {
+    "topRatedProducts": "Top Rated Products",
+    "allProducts": "see all products"
+  }
 }
