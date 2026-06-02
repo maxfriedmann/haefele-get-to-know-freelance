@@ -1,0 +1,31 @@
+<div
+  class="card card-border bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300 w-full h-full cursor-pointer"
+  (click)="detailsClick.emit()"
+  attr.data-testid="product-card-{{ product().id }}"
+  role="button"
+>
+  <figure>
+    <img
+      [src]="product().image"
+      alt="{{ product().title }}"
+      class="w-full h-80 object-contain p-2"
+    />
+  </figure>
+  <div class="card-body flex flex-col justify-between">
+    <div class="h-full">
+      <div class="card-title line-clamp-2">{{ product().title }}</div>
+      <haefele-rating [rate]="product().rating.rate" [count]="product().rating.count" />
+      <p class="line-clamp-4 mt-4">{{ product().description }}</p>
+    </div>
+    <p class="text-2xl font-bold text-end">{{ product().price | appCurrency }}</p>
+  </div>
+  <div class="card-footer">
+    <button
+      class="btn btn-secondary w-full"
+      data-testid="add-to-cart-button"
+      (click)="onAddToCartClick($event)"
+    >
+      {{ 'products.addToCart' | translate }}
+    </button>
+  </div>
+</div>

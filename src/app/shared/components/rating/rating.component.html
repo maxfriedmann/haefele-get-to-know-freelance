@@ -1,0 +1,11 @@
+<div class="text-sm text-base-content/50" [attr.title]="rate() + ' / 5'">
+  <span class="relative inline-block align-middle text-warning leading-none">
+    <span aria-hidden="true">☆☆☆☆☆</span>
+    <span
+      class="absolute inset-0 overflow-hidden whitespace-nowrap"
+      [style.width.%]="fillPercent()"
+      >★★★★★</span
+    >
+  </span>
+  ({{ count() }} {{ 'products.reviews' | translate }})
+</div>
