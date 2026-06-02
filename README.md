@@ -58,3 +58,4 @@ npm run serve:ssr:shop    # run ssr node process (build first!!!)
   - linter
 - I would prefer tab indentation
 - Optimize for mobile devices
+- would handle loading i18n files differently

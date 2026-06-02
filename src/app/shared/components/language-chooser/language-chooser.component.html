@@ -1,0 +1,15 @@
+<div class="dropdown dropdown-top dropdown-end" data-testid="language-chooser">
+    <label tabindex="0" class="btn btn-ghost btn-sm m-1" data-testid="language-trigger">
+        <img [src]="languages.find(l => l.code === currentLang())?.icon" alt="{{ currentLang() }}"
+            class="inline-block w-4 h-4 mr-2">
+        {{ currentLang() }}
+    </label>
+    <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+        @for (lang of languages; track lang) {
+        <li><a (click)="changeLanguage(lang.code)" [attr.data-testid]="'language-option-' + lang.code">
+                <img [src]="lang.icon" alt="{{ lang.code }}" class="inline-block w-4 h-4 mr-2">
+                {{ lang.code }}
+            </a></li>
+        }
+    </ul>
+</div>

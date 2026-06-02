@@ -1,17 +1,20 @@
 <div class="flex min-h-screen flex-col bg-base-100">
     <header class="navbar bg-base-200 shadow-sm">
-        <div class="flex-1">
-            <a class="btn btn-ghost text-xl gap-0 text-secondary" routerLink="/">H<span
-                    class="text-primary">Ä</span>FELE</a>
+        <div class="container mx-auto flex">
+            <div class="flex-1">
+                <a class="btn btn-ghost text-xl gap-0 text-secondary" routerLink="/">H<span
+                        class="text-primary">Ä</span>FELE</a>
+            </div>
+            <nav class="flex-none">
+                <ul class="menu menu-horizontal px-1 gap-4 items-center">
+                    <li><a routerLink="/" routerLinkActive="menu-active" [routerLinkActiveOptions]="{ exact: true }">{{
+                            'nav.home' | translate }}</a></li>
+                    <li><a routerLink="/products" routerLinkActive="menu-active">{{ 'nav.products' | translate }}</a>
+                    </li>
+                    <li><a routerLink="/cart" routerLinkActive="menu-active">{{ 'nav.cart' | translate }}</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav class="flex-none">
-            <ul class="menu menu-horizontal px-1">
-                <li><a routerLink="/" routerLinkActive="menu-active"
-                        [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
-                <li><a routerLink="/products" routerLinkActive="menu-active">Products</a></li>
-                <li><a routerLink="/cart" routerLinkActive="menu-active">Cart</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main class="flex-1 container mx-auto p-4">
@@ -19,8 +22,12 @@
     </main>
 
     <footer class="footer footer-center bg-base-200 text-secondary p-4">
-        <aside>
+        <aside class="container mx-auto flex gap-4 items-center justify-between px-4">
+            <div class="w-8"></div>
             <p>© 2026 HÄFELE TEST SHOP</p>
+            <div class="w-8">
+                <haefele-language-chooser></haefele-language-chooser>
+            </div>
         </aside>
     </footer>
 </div>
