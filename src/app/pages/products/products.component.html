@@ -1,1 +1,6 @@
-PRODUCTS
+<haefele-page-header
+  title="{{ 'products.title' | translate }}"
+  subTitle="{{ 'products.subTitle' | translate }}"
+></haefele-page-header>
+
+<haefele-product-grid [products]="(products$ | async) ?? []"></haefele-product-grid>

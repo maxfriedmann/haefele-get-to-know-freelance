@@ -14,6 +14,13 @@ export const routes: Routes = [
 			),
 	},
 	{
+		path: "products/:productId",
+		loadComponent: () =>
+			import("./pages/product-detail/product-detail.component").then(
+				(m) => m.ProductDetailComponent,
+			),
+	},
+	{
 		path: "cart",
 		loadComponent: () =>
 			import("./pages/cart/cart.component").then((m) => m.CartComponent),
