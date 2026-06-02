@@ -56,4 +56,5 @@ npm run serve:ssr:shop    # run ssr node process (build first!!!)
   - branching model
   - commit message conventions
   - linter
-
+- I would prefer tab indentation
+- Optimize for mobile devices
