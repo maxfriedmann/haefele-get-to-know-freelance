@@ -28,7 +28,10 @@
 
   <!-- products in the same category -->
   <div class="flex flex-col gap-8 pt-24">
-    <h2 class="text-4xl font-semibold">{{ 'products.relatedProducts' | translate }}</h2>
+    <haefele-page-header
+      [title]="'products.relatedProducts' | translate"
+      [level]="2"
+    ></haefele-page-header>
     <haefele-product-grid [products]="(relatedProducts$ | async) ?? []"></haefele-product-grid>
   </div>
 }

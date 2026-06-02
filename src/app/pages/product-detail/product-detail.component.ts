@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from "@angular/router";
 import { TranslatePipe } from "@ngx-translate/core";
 import { filter, map, switchMap } from "rxjs";
 import { ProductService } from "../../core/services/product.service";
+import { PageHeaderComponent } from "../../shared/components/page-header/page-header.component";
 import { ProductGridComponent } from "../../shared/components/product-grid/product-grid.component";
 import { RatingComponent } from "../../shared/components/rating/rating.component";
 
@@ -15,6 +16,7 @@ import { RatingComponent } from "../../shared/components/rating/rating.component
 		ProductGridComponent,
 		TranslatePipe,
 		RatingComponent,
+		PageHeaderComponent,
 	],
 	templateUrl: "./product-detail.component.html",
 })
