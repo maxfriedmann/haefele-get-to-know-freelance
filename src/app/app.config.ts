@@ -1,5 +1,6 @@
 import {
 	type ApplicationConfig,
+	isDevMode,
 	provideBrowserGlobalErrorListeners,
 } from "@angular/core";
 import {
@@ -7,6 +8,7 @@ import {
 	withEventReplay,
 } from "@angular/platform-browser";
 import { provideRouter } from "@angular/router";
+import { provideServiceWorker } from "@angular/service-worker";
 import { routes } from "./app.routes";
 
 export const appConfig: ApplicationConfig = {
@@ -14,5 +16,9 @@ export const appConfig: ApplicationConfig = {
 		provideBrowserGlobalErrorListeners(),
 		provideRouter(routes),
 		provideClientHydration(withEventReplay()),
+		provideServiceWorker("ngsw-worker.js", {
+			enabled: !isDevMode(),
+			registrationStrategy: "registerWhenStable:30000",
+		}),
 	],
 };
