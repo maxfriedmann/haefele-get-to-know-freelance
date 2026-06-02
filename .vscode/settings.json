@@ -18,5 +18,8 @@
 	"[html]": {
 		"editor.defaultFormatter": "vscode.html-language-features"
 	},
-	"cSpell.words": ["haefele"]
+	"cSpell.words": ["haefele"],
+	"[markdown]": {
+		"editor.defaultFormatter": "yzhang.markdown-all-in-one"
+	}
 }

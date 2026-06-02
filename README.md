@@ -59,3 +59,61 @@ npm run serve:ssr:shop    # run ssr node process (build first!!!)
 - I would prefer tab indentation
 - Optimize for mobile devices
 - would handle loading i18n files differently
+
+
+---
+## Internal Checklist
+
+### Foundation & tooling
+- [x] bootstrap Angular app (zoneless, standalone, with SSR)
+- [x] add Tailwind CSS + daisyUI styling
+- [x] add Biome, Vitest, Playwright
+- [x] add PWA service worker + webmanifest via @angular/pwa
+- [x] add basic routing for home, products, cart etc.pp.
+
+### Internationalization (i18n)
+- [x] add ngx-translate with some first translations (en + de for now)
+- [x] basic language chooser with some persistence + playwright test?
+
+### NgRx store (hybrid: Intershop facades + modern `createFeature`/functional effects)
+- [ ] ngrx setup, register `provideStore` / `provideEffects` in `app.config.ts`
+- [ ] create ProductService that does GET /products (and GET /products/:id ???)
+- [ ] products feature: `createActionGroup` actions, `createFeature` reducer+selectors, functional effects, `@ngrx/entity` adapter
+- [ ] add loading + error state for products
+- [ ] create ProductsFacade which the components will consume
+- [ ] cart feature: actions, `createFeature`, functional effects (GET/POST/PUT/DELETE)? possible with fakestoreapi.com?
+- [ ] cart loading + error state, keep all cart state in NgRx only
+- [ ] add CartFacade
+- [ ] avoid duplicate api calls (skip re-fetch when already loaded)
+
+### Pages
+- [ ] PLP `/products`: show title, price, image, category + client-side filter + sort, loading & error ui
+- [ ] PDP `/product/:id`: SSR-rendered, all the fields, handle invalid/missing id (heads up: api returns empty 200, not 404!)
+- [ ] cart `/cart`: add/update/remove via effects, use all of GET/POST/PUT/DELETE, error handling
+- [ ] homepage `/`: own design (category overview + featured, reusing the product data) + note down the why
+
+### SSR (automatic HttpClient transfer cache)
+- [ ] provideClientHydration with `withHttpTransferCacheOptions` so server responses replay on the client
+- [ ] check product/PDP data is already in the initial html
+- [ ] check there's no double-fetch after hydration (network tab)
+- [ ] `isPlatformBrowser` / `isPlatformServer` guards where needed (e.g. localStorage)
+
+### Tests
+- [ ] unit tests (vitest) for reducers, selectors, effects, facades
+- [ ] e2e (playwright) for the PLP -> PDP -> cart flow
+
+### Documentation (README)
+- [ ] project overview, tech stack, app structure
+- [ ] ngrx design decisions (why facades + feature folders)
+- [ ] SSR strategy
+- [ ] i18n approach
+- [ ] homepage design rationale
+- [ ] assumptions & trade-offs
+- [ ] what i'd improve with more time
+- [ ] fix tech-stack table: ngrx is 21, not 18
+
+### Submission
+- [ ] working SSR prod build (`npm run build` + `npm run serve:ssr:shop`)
+- [ ] clean, meaningful commit history
+- [ ] recorded walkthrough (<= 3 min)
+- [ ] public repo url + run/test instructions in README
