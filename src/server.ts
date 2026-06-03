@@ -10,7 +10,10 @@ import { join } from "node:path";
 const browserDistFolder = join(import.meta.dirname, "../browser");
 
 const app = express();
-const angularApp = new AngularNodeAppEngine();
+// Behind a reverse proxy / ingress (nginx, Vercel, etc.) the public host arrives
+// in `x-forwarded-host`. Trust those proxy headers so Angular's SSRF host check
+// validates the real domain instead of the proxy's internal `Host` value.
+const angularApp = new AngularNodeAppEngine({ trustProxyHeaders: true });
 
 /**
  * Example Express Rest API endpoints can be defined here.

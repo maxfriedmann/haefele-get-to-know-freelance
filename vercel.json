@@ -1,7 +1,7 @@
 {
 	"$schema": "https://openapi.vercel.sh/vercel.json",
 	"framework": null,
-	"buildCommand": "ng build",
+	"buildCommand": "ng build && rm -f dist/shop/browser/index.csr.html",
 	"installCommand": "npm install",
 	"outputDirectory": "dist/shop/browser",
 	"rewrites": [{ "source": "/(.*)", "destination": "/api" }],

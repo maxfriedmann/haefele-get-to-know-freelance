@@ -101,6 +101,11 @@ Component unit tests are expensive but important to reduce unattended component 
 - use image sizes that match the dimensions in the shop (like wsrv.nl or bunny.net optimize)
 - stricter separation of "dumb" components vs. components that know about the store, would allow easy component testing
 
+### What consumed the most time
+
+- finding the right line between Intershop PWA state-of-the-art and the current way of using Angular + NgRx
+- figuring out why SSR in a production deployment didn't work. turns out that cloudflare in front of the fakestoreapi blocks SSR requests with a bot challenge, so SSR sends prerendered HTML with an error.
+
 ---
 
 ## Internal Checklist
