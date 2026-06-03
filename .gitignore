@@ -49,3 +49,4 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 node-compile-cache/
+.vercel
