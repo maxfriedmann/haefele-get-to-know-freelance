@@ -14,6 +14,13 @@ export default defineConfig({
 	use: {
 		baseURL,
 		trace: "on-first-retry",
+		// Boot the app in German: I18nService negotiates the initial language from
+		// the Accept-Language header (during SSR), so this pins the default the
+		// tests expect. `locale` keeps navigator.language consistent too.
+		locale: "de-DE",
+		extraHTTPHeaders: {
+			"Accept-Language": "de-DE,de;q=0.9,en;q=0.8",
+		},
 	},
 	projects: [
 		{

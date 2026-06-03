@@ -1,12 +1,11 @@
 import { expect, test } from "@playwright/test";
 
-// Copy as defined in src/app/i18n/en.json.
+// Copy as defined in src/app/i18n/de.json (the default language).
 const TEXT = {
-	title: "Page not found",
-	subTitle:
-		"Sorry, the page you are looking for doesn't exist or has been moved.",
-	backHome: "Back to home",
-	browseProducts: "Browse products",
+	title: "Seite nicht gefunden",
+	subTitle: "Die gesuchte Seite existiert leider nicht oder wurde verschoben.",
+	backHome: "Zurück zur Startseite",
+	browseProducts: "Produkte ansehen",
 };
 
 test.describe("not found page", () => {
@@ -34,7 +33,7 @@ test.describe("not found page", () => {
 
 		await expect(page).toHaveURL(/\/$/);
 		await expect(
-			page.getByRole("heading", { name: "Welcome to the Häfele shop" }),
+			page.getByRole("heading", { name: "Willkommen im Häfele Shop" }),
 		).toBeVisible();
 	});
 
@@ -45,7 +44,7 @@ test.describe("not found page", () => {
 
 		await expect(page).toHaveURL(/\/products$/);
 		await expect(
-			page.getByRole("heading", { name: "Our Products" }),
+			page.getByRole("heading", { name: "Unsere Produkte" }),
 		).toBeVisible();
 	});
 });

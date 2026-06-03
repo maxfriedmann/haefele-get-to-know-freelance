@@ -4,7 +4,7 @@ import { expect, type Page, test } from "@playwright/test";
 // with the trigger losing focus, so the option's (click) handler is sometimes
 // swallowed. Retry the open->select until the trigger label reflects the choice.
 async function selectSort(page: Page, optionName: string) {
-	const trigger = page.getByRole("button", { name: /Sort by/ });
+	const trigger = page.getByRole("button", { name: /Sortieren nach/ });
 	await expect(async () => {
 		await trigger.click();
 		await page.getByRole("button", { name: optionName }).click();
@@ -12,11 +12,11 @@ async function selectSort(page: Page, optionName: string) {
 	}).toPass();
 }
 
-// Copy as defined in src/app/i18n/en.json.
+// Copy as defined in src/app/i18n/de.json (the default language).
 const TEXT = {
-	title: "Our Products",
-	searchPlaceholder: "search this product list...",
-	noProductsFound: "No products found",
+	title: "Unsere Produkte",
+	searchPlaceholder: "Produkt Liste durchsuchen...",
+	noProductsFound: "Keine Produkte gefunden",
 };
 
 // public/products.json is a fixed fixture of 20 products served from this app's

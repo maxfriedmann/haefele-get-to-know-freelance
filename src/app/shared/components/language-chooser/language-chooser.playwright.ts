@@ -12,48 +12,48 @@ async function selectLanguage(page: Page, code: "en" | "de") {
 }
 
 test.describe("language chooser", () => {
-	test("defaults to English", async ({ page }) => {
+	test("defaults to German", async ({ page }) => {
 		await page.goto("/");
-
-		await expect(page.getByRole("link", { name: NAV.en.home })).toBeVisible();
-		await expect(page.getByTestId("language-trigger")).toContainText("en");
-	});
-
-	test("switches the nav labels to German", async ({ page }) => {
-		await page.goto("/");
-		await selectLanguage(page, "de");
 
 		await expect(page.getByRole("link", { name: NAV.de.home })).toBeVisible();
+		await expect(page.getByTestId("language-trigger")).toContainText("de");
+	});
+
+	test("switches the nav labels to English", async ({ page }) => {
+		await page.goto("/");
+		await selectLanguage(page, "en");
+
+		await expect(page.getByRole("link", { name: NAV.en.home })).toBeVisible();
 		await expect(
-			page.getByRole("link", { name: NAV.de.products }),
+			page.getByRole("link", { name: NAV.en.products }),
 		).toBeVisible();
-		await expect(page.getByRole("link", { name: NAV.de.cart })).toBeVisible();
-		// English labels are gone.
-		await expect(page.getByRole("link", { name: NAV.en.home })).toHaveCount(0);
+		await expect(page.getByRole("link", { name: NAV.en.cart })).toBeVisible();
+		// German labels are gone.
+		await expect(page.getByRole("link", { name: NAV.de.home })).toHaveCount(0);
 	});
 
 	test("closes the dropdown after selecting", async ({ page }) => {
 		await page.goto("/");
-		await selectLanguage(page, "de");
+		await selectLanguage(page, "en");
 
 		// The menu items are only interactable while the dropdown is open.
-		await expect(page.getByTestId("language-option-en")).toBeHidden();
+		await expect(page.getByTestId("language-option-de")).toBeHidden();
 	});
 
 	test("persists the choice across reloads via localStorage", async ({
 		page,
 	}) => {
 		await page.goto("/");
-		await selectLanguage(page, "de");
+		await selectLanguage(page, "en");
 
 		await expect
 			.poll(() => page.evaluate(() => localStorage.getItem("language")))
-			.toBe("de");
+			.toBe("en");
 
 		await page.reload();
 
 		// Restored from localStorage on load — no need to reselect.
-		await expect(page.getByRole("link", { name: NAV.de.home })).toBeVisible();
-		await expect(page.getByTestId("language-trigger")).toContainText("de");
+		await expect(page.getByRole("link", { name: NAV.en.home })).toBeVisible();
+		await expect(page.getByTestId("language-trigger")).toContainText("en");
 	});
 });

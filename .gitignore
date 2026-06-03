@@ -50,3 +50,4 @@ __screenshots__/
 Thumbs.db
 node-compile-cache/
 .vercel
+playwright-transform-cache-1000/

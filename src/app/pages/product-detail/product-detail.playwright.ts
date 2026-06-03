@@ -1,10 +1,10 @@
 import { expect, test } from "@playwright/test";
 
-// Copy as defined in src/app/i18n/en.json.
+// Copy as defined in src/app/i18n/de.json (the default language).
 const TEXT = {
-	articleNumber: "Article Number",
-	relatedProducts: "Related Products",
-	productNotFound: "Product not found",
+	articleNumber: "Artikelnummer",
+	relatedProducts: "Verwandte Produkte",
+	productNotFound: "Produkt nicht gefunden",
 };
 
 // Product 1 from public/products.json.
@@ -39,7 +39,9 @@ test.describe("product detail page", () => {
 
 		await page.getByTestId("add-to-cart-button").first().click();
 
-		await expect(page.getByRole("link", { name: "Cart" })).toContainText("1");
+		await expect(page.getByRole("link", { name: "Warenkorb" })).toContainText(
+			"1",
+		);
 	});
 
 	test("the back button returns to the products list", async ({ page }) => {

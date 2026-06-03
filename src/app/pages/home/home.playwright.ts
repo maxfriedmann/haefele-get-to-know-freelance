@@ -1,10 +1,10 @@
 import { expect, test } from "@playwright/test";
 
-// Copy as defined in src/app/i18n/en.json (the default language).
+// Copy as defined in src/app/i18n/de.json (the default language).
 const TEXT = {
-	title: "Welcome to the Häfele shop",
-	topRated: "Top Rated Products",
-	allProducts: "see all products",
+	title: "Willkommen im Häfele Shop",
+	topRated: "Produkte mit guter Bewertung",
+	allProducts: "Zeige alle Produkte",
 };
 
 // Product cards render with data-testid="product-card-<id>" (product-card.component.html).
@@ -39,7 +39,9 @@ test.describe("home page", () => {
 		await page.getByRole("button", { name: TEXT.allProducts }).click();
 
 		await expect(page).toHaveURL(/\/products$/);
-		await expect(page.getByRole("heading", { name: "Our Products" })).toBeVisible();
+		await expect(
+			page.getByRole("heading", { name: "Unsere Produkte" }),
+		).toBeVisible();
 	});
 
 	test("a product card navigates to its detail page", async ({ page }) => {

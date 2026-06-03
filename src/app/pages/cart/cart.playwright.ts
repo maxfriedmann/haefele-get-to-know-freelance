@@ -1,12 +1,12 @@
 import { expect, type Page, test } from "@playwright/test";
 
-// Copy as defined in src/app/i18n/en.json.
+// Copy as defined in src/app/i18n/de.json (the default language).
 const TEXT = {
-	empty: "Your cart is empty.",
-	continueShopping: "Continue shopping",
-	clear: "Clear cart",
-	checkout: "Checkout",
-	orderPlaced: "Order placed! Cart created",
+	empty: "Ihr Warenkorb ist leer.",
+	continueShopping: "Weiter einkaufen",
+	clear: "Warenkorb leeren",
+	checkout: "Zur Kasse",
+	orderPlaced: "Bestellung aufgegeben! Warenkorb erstellt",
 };
 
 const PRODUCT_1_TITLE = "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops";
@@ -20,7 +20,7 @@ async function addProductOneAndOpenCart(page: Page) {
 		.getByTestId("product-card-1")
 		.getByTestId("add-to-cart-button")
 		.click();
-	await page.getByRole("link", { name: "Cart" }).click();
+	await page.getByRole("link", { name: "Warenkorb" }).click();
 	await expect(page).toHaveURL(/\/cart$/);
 }
 
@@ -57,7 +57,7 @@ test.describe("cart page", () => {
 	test("removes a line item", async ({ page }) => {
 		await addProductOneAndOpenCart(page);
 
-		await page.getByRole("button", { name: "Remove" }).click();
+		await page.getByRole("button", { name: "Entfernen" }).click();
 
 		await expect(page.getByText(TEXT.empty)).toBeVisible();
 	});
