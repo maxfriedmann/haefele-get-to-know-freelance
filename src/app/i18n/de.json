@@ -36,6 +36,12 @@
 	"errors": {
 		"generic": "Beim Laden der Daten ist ein Fehler aufgetreten."
 	},
+	"notFound": {
+		"title": "Seite nicht gefunden",
+		"subTitle": "Die gesuchte Seite existiert leider nicht oder wurde verschoben.",
+		"backHome": "Zurück zur Startseite",
+		"browseProducts": "Produkte ansehen"
+	},
 	"cart": {
 		"title": "Ihr Warenkorb",
 		"empty": "Ihr Warenkorb ist leer.",

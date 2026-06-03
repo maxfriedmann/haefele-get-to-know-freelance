@@ -1,0 +1,29 @@
+<section class="hero min-h-[60vh]">
+  <div class="hero-content text-center">
+    <div class="max-w-md flex flex-col items-center gap-6">
+      <p
+        class="text-7xl md:text-9xl font-bold leading-none tracking-tight text-primary/60"
+        aria-hidden="true"
+      >
+        4<span class="text-secondary">0</span>4
+      </p>
+
+      <h1 class="text-2xl md:text-4xl font-semibold">
+        {{ 'notFound.title' | translate }}
+      </h1>
+
+      <p class="text-base md:text-lg text-base-content/70">
+        {{ 'notFound.subTitle' | translate }}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-3 mt-2 w-full sm:w-auto">
+        <a class="btn btn-primary btn-soft" routerLink="/">
+          {{ 'notFound.backHome' | translate }}
+        </a>
+        <a class="btn btn-ghost" routerLink="/products">
+          {{ 'notFound.browseProducts' | translate }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

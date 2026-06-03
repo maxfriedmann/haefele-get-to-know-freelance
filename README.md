@@ -13,14 +13,22 @@ designed homepage, running against the public "Fake Store API".
 
 I got the task to create a mini Angular PWA with a Product Listing Page (PLP), a Product Detail PAge (PDP), a cart and a homepage of my own design, using latest LTS Angular with SSR, NgRx/RxJS and a basic key-value i18n.
 
+### Links
+
+- **Repository:** https://github.com/maxfriedmann/haefele-get-to-know-freelance
+- **Live demo (Vercel, SSR):** https://haefele.smallstack.app
+
 ### Getting started
+
+Prerequisites: Node `20.19+` / `22.12+` / `24+` and npm `11+`.
 
 ```bash
 npm install               # install dependencies
-npm start                 # dev server
-npm run build             # build the app
-npm test                  # execute unit tests
-npm run serve:ssr:shop    # run ssr node process (build first!!!)
+npm start                 # dev server -> http://localhost:4200
+npm run build             # production build
+npm run serve:ssr:shop    # run the SSR node server (run build first!!!)
+npm test                  # unit tests (Vitest via ng test)
+npm run e2e               # e2e tests (Playwright)
 ```
 
 ### Decisions
@@ -154,7 +162,7 @@ Component unit tests are expensive but important to reduce unattended component 
 
 ### Submission
 
-- [ ] working SSR prod build (`npm run build` + `npm run serve:ssr:shop`)
+- [x] working SSR prod build (`npm run build` + `npm run serve:ssr:shop`), verified by vercel prod deployment: https://haefele.smallstack.app
 - [x] clean, meaningful commit history
 - [ ] recorded walkthrough (<= 3 min)
 - [ ] public repo url + run/test instructions in README

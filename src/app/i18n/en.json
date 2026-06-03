@@ -36,6 +36,12 @@
 	"errors": {
 		"generic": "Something went wrong while loading the data."
 	},
+	"notFound": {
+		"title": "Page not found",
+		"subTitle": "Sorry, the page you are looking for doesn't exist or has been moved.",
+		"backHome": "Back to home",
+		"browseProducts": "Browse products"
+	},
 	"cart": {
 		"title": "Your Cart",
 		"empty": "Your cart is empty.",
