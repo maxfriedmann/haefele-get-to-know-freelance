@@ -18,7 +18,6 @@ export class ProductsEffects {
 			ofType(ProductsActions.loadProducts),
 			// only load products if they haven't been loaded yet
 			concatLatestFrom(() => this.store.select(productsFeature.selectStatus)),
-			// tap(([, status]) => console.log("Loading products, status is: ", status)),
 			filter(([, status]) => status !== "loaded"),
 			switchMap(() =>
 				this.productService.getAll().pipe(

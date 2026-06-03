@@ -1,7 +1,9 @@
 # HÄFELE Angular App
 
 A small storefront Angular PWA with product listing, product detail, cart and a freely
-designed homepage, running against the public "Fake Store API".
+designed homepage. Product data is a static snapshot of the public "Fake Store API"
+(served from the app's own origin to avoid Cloudflare blocking SSR requests); the cart
+checkout posts to the live Fake Store API. See the trade-offs below for the why.
 
 > **Status:** This README started as a decision log and was filled out as the implementation landed.
 
@@ -125,7 +127,7 @@ Component unit tests are expensive but important to reduce unattended component 
 
 ### NgRx store (hybrid: Intershop facades + modern `createFeature` + class-based effects)
 
-- [x] create ProductService that does GET /products (GET /products/:id exists but is unused — we load all products once, see trade-offs)
+- [x] create ProductService that fetches the product list from a static `/products.json` on the app origin (Cloudflare blocks SSR calls to fakestoreapi — see trade-offs); single products are derived from the loaded list, so no `getById` needed
 - [x] ngrx setup, register `provideStore` / `provideEffects` in `app.config.ts`
 - [x] products feature: `createActionGroup` actions, `createFeature` reducer+selectors, class-based effect, `@ngrx/entity` adapter etc.pp.
 - [x] add loading + error state for products
