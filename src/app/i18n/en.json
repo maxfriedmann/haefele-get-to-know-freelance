@@ -25,7 +25,8 @@
 		"searchPlaceholder": "search this product list...",
 		"noProductsFound": "No products found",
 		"productNotFound": "Product not found",
-		"addedToCart": "product added"
+		"addedToCart": "product added",
+		"backToProducts": "Back to Products"
 	},
 	"home": {
 		"topRatedProducts": "Top Rated Products",

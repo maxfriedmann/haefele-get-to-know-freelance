@@ -42,7 +42,11 @@ export class ProductGridComponent {
 		const term = this.searchTerm().toLowerCase().trim(); // as long as ALL products are loaded, we can search without debouncing
 		let products = [...(this.products() ?? [])];
 		if (term) {
-			products = products.filter((p) => p.title.toLowerCase().includes(term));
+			products = products.filter(
+				(p) =>
+					p.title.toLowerCase().includes(term) ||
+					p.description.toLowerCase().includes(term),
+			);
 		}
 		switch (this.sortBy()) {
 			case "priceAsc":

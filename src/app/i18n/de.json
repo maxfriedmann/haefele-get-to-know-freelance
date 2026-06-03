@@ -25,7 +25,8 @@
 		"searchPlaceholder": "Produkt Liste durchsuchen...",
 		"noProductsFound": "Keine Produkte gefunden",
 		"productNotFound": "Produkt nicht gefunden",
-		"addedToCart": "Produkt wurde hinzugefügt"
+		"addedToCart": "Produkt wurde hinzugefügt",
+		"backToProducts": "Zurück zur Produktliste"
 	},
 	"home": {
 		"title": "Willkommen im Häfele Shop",

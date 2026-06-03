@@ -1,18 +1,24 @@
 <haefele-page-header
   title="{{ 'home.title' | translate }}"
   subTitle="{{ 'home.subTitle' | translate }}"
+  testId="page-title"
 ></haefele-page-header>
 
 <div class="flex flex-col gap-0">
   <haefele-page-header
     title="{{ 'home.topRatedProducts' | translate }}"
     [level]="2"
+    testId="top-rated-title"
   ></haefele-page-header>
   <haefele-store-loading [status]="(status$ | async) ?? 'idle'">
     <haefele-product-grid [products]="(topRatedProducts$ | async) ?? []"></haefele-product-grid>
   </haefele-store-loading>
 </div>
 
-<button class="btn btn-lg btn-soft btn-primary btn-block mt-16" routerLink="/products">
+<button
+  class="btn btn-lg btn-soft btn-primary btn-block mt-16"
+  routerLink="/products"
+  data-testid="all-products-link"
+>
   {{ 'home.allProducts' | translate }}
 </button>

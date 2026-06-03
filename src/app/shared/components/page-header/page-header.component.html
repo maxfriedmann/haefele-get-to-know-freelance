@@ -2,9 +2,14 @@
   <div class="flex items-center gap-2 md:gap-4 mb-4">
     @if (level() === 1) {
       <div class="size-6 md:size-10 bg-primary/60"></div>
-      <h1 class="text-xl md:text-6xl font-semibold">{{ title() }}</h1>
+      <h1 class="text-xl md:text-6xl font-semibold" [attr.data-testid]="testId()">
+        {{ title() }}
+      </h1>
     } @else {
-      <h2 class="text-lg md:text-4xl font-medium border-l-4 border-primary/60 pl-3 md:pl-4">
+      <h2
+        class="text-lg md:text-4xl font-medium border-l-4 border-primary/60 pl-3 md:pl-4"
+        [attr.data-testid]="testId()"
+      >
         {{ title() }}
       </h2>
     }

@@ -1,4 +1,6 @@
-<button class="btn btn-link" routerLink="/products">Back to Products</button>
+<button class="btn btn-link no-underline" routerLink="/products" data-testid="back-to-products">
+  {{ 'products.backToProducts' | translate }}
+</button>
 
 <haefele-store-loading
   [status]="productsLoadingStatus$ | async"
@@ -13,11 +15,12 @@
             <haefele-rating [rate]="product.rating.rate" [count]="product.rating.count" />
             <h2 class="text-5xl font-semibold">{{ product.title }}</h2>
             <div class="flex flex-col md:flex-row gap-1 md:gap-4">
-              <span class="badge badge-secondary"
+              <span class="badge badge-secondary" data-testid="article-number"
                 >{{ 'products.articleNumber' | translate }}: {{ product.id }}</span
               >
               <span class="badge badge-secondary"
-                >{{ 'products.category' | translate }}: <span class="capitalize">{{ product.category }}</span></span
+                >{{ 'products.category' | translate }}:
+                <span class="capitalize">{{ product.category }}</span></span
               >
             </div>
           </div>
@@ -37,12 +40,13 @@
       <haefele-page-header
         [title]="'products.relatedProducts' | translate"
         [level]="2"
+        testId="related-products-title"
       ></haefele-page-header>
       <haefele-product-grid [products]="(relatedProducts$ | async) ?? []"></haefele-product-grid>
     </div>
   } @else {
     <div class="m-16">
-      <div class="alert alert-error">
+      <div class="alert alert-error" data-testid="product-not-found">
         {{ 'products.productNotFound' | translate }}
       </div>
     </div>

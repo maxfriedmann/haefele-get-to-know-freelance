@@ -11,8 +11,10 @@
 @if (entries$ | async; as entries) {
   @if (entries.length === 0) {
     <div class="flex flex-col items-center gap-4 py-16">
-      <p class="text-xl text-base-content/60">{{ 'cart.empty' | translate }}</p>
-      <a routerLink="/products" class="btn btn-primary">
+      <p class="text-xl text-base-content/60" data-testid="cart-empty">
+        {{ 'cart.empty' | translate }}
+      </p>
+      <a routerLink="/products" class="btn btn-primary" data-testid="continue-shopping">
         {{ 'cart.continueShopping' | translate }}
       </a>
     </div>
@@ -37,13 +39,17 @@
           <div class="join">
             <button
               class="btn btn-sm join-item"
+              data-testid="cart-qty-decrease"
               (click)="setQuantity(entry.product.id, entry.quantity - 1)"
             >
               −
             </button>
-            <span class="btn btn-sm join-item pointer-events-none">{{ entry.quantity }}</span>
+            <span class="btn btn-sm join-item pointer-events-none" data-testid="cart-qty">{{
+              entry.quantity
+            }}</span>
             <button
               class="btn btn-sm join-item"
+              data-testid="cart-qty-increase"
               (click)="setQuantity(entry.product.id, entry.quantity + 1)"
             >
               +
@@ -54,6 +60,7 @@
 
           <button
             class="btn btn-square btn-ghost btn-sm text-error"
+            data-testid="cart-remove"
             (click)="remove(entry.product.id)"
             [attr.aria-label]="'cart.remove' | translate"
           >
@@ -69,13 +76,18 @@
       </p>
 
       @if (cartId$ | async; as cartId) {
-        <div class="alert alert-success">{{ 'cart.orderPlaced' | translate }} (#{{ cartId }})</div>
+        <div class="alert alert-success" data-testid="cart-confirmation">
+          {{ 'cart.orderPlaced' | translate }} (#{{ cartId }})
+        </div>
       }
 
       <div class="flex gap-4">
-        <button class="btn btn-ghost" (click)="clear()">{{ 'cart.clear' | translate }}</button>
+        <button class="btn btn-ghost" data-testid="cart-clear" (click)="clear()">
+          {{ 'cart.clear' | translate }}
+        </button>
         <button
           class="btn btn-primary btn-lg"
+          data-testid="cart-checkout"
           [disabled]="(checkoutStatus$ | async) === 'loading'"
           (click)="checkout()"
         >

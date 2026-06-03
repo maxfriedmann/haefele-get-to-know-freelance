@@ -63,10 +63,7 @@ describe("cartFeature reducer", () => {
 
 	describe("loadCart", () => {
 		it("goes to loading", () => {
-			const state = reducer(
-				initialCartState,
-				CartActions.loadCart({ id: 1 }),
-			);
+			const state = reducer(initialCartState, CartActions.loadCart({ id: 1 }));
 			expect(state.checkoutStatus).toBe("loading");
 		});
 

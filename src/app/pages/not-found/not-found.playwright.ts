@@ -1,21 +1,11 @@
 import { expect, test } from "@playwright/test";
 
-// Copy as defined in src/app/i18n/de.json (the default language).
-const TEXT = {
-	title: "Seite nicht gefunden",
-	subTitle: "Die gesuchte Seite existiert leider nicht oder wurde verschoben.",
-	backHome: "Zurück zur Startseite",
-	browseProducts: "Produkte ansehen",
-};
-
 test.describe("not found page", () => {
 	test("renders for an unknown route (wildcard match)", async ({ page }) => {
 		await page.goto("/this-route-does-not-exist");
 
-		await expect(
-			page.getByRole("heading", { level: 1, name: TEXT.title }),
-		).toBeVisible();
-		await expect(page.getByText(TEXT.subTitle)).toBeVisible();
+		await expect(page.getByTestId("not-found-title")).toBeVisible();
+		await expect(page.getByTestId("not-found-subtitle")).toBeVisible();
 	});
 
 	test("returns a real 404 status on the SSR response", async ({ page }) => {
@@ -29,22 +19,18 @@ test.describe("not found page", () => {
 	test("links back to the home page", async ({ page }) => {
 		await page.goto("/nope");
 
-		await page.getByRole("link", { name: TEXT.backHome }).click();
+		await page.getByTestId("not-found-home").click();
 
 		await expect(page).toHaveURL(/\/$/);
-		await expect(
-			page.getByRole("heading", { name: "Willkommen im Häfele Shop" }),
-		).toBeVisible();
+		await expect(page.getByTestId("page-title")).toBeVisible();
 	});
 
 	test("links to the products page", async ({ page }) => {
 		await page.goto("/nope");
 
-		await page.getByRole("link", { name: TEXT.browseProducts }).click();
+		await page.getByTestId("not-found-products").click();
 
 		await expect(page).toHaveURL(/\/products$/);
-		await expect(
-			page.getByRole("heading", { name: "Unsere Produkte" }),
-		).toBeVisible();
+		await expect(page.getByTestId("page-title")).toBeVisible();
 	});
 });

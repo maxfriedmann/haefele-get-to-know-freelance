@@ -1,14 +1,6 @@
 import { expect, type Page, test } from "@playwright/test";
 
-// Copy as defined in src/app/i18n/de.json (the default language).
-const TEXT = {
-	empty: "Ihr Warenkorb ist leer.",
-	continueShopping: "Weiter einkaufen",
-	clear: "Warenkorb leeren",
-	checkout: "Zur Kasse",
-	orderPlaced: "Bestellung aufgegeben! Warenkorb erstellt",
-};
-
+// Product 1 from public/products.json (product data is language-independent).
 const PRODUCT_1_TITLE = "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops";
 
 // The cart lives in the in-memory NgRx store (no persistence), so a full page
@@ -20,7 +12,9 @@ async function addProductOneAndOpenCart(page: Page) {
 		.getByTestId("product-card-1")
 		.getByTestId("add-to-cart-button")
 		.click();
-	await page.getByRole("link", { name: "Warenkorb" }).click();
+	// nav-cart is rendered in both the desktop and mobile menus; .first() is the
+	// desktop one (visible at the test viewport).
+	await page.getByTestId("nav-cart").first().click();
 	await expect(page).toHaveURL(/\/cart$/);
 }
 
@@ -30,9 +24,9 @@ test.describe("cart page", () => {
 	}) => {
 		await page.goto("/cart");
 
-		await expect(page.getByText(TEXT.empty)).toBeVisible();
+		await expect(page.getByTestId("cart-empty")).toBeVisible();
 
-		await page.getByRole("link", { name: TEXT.continueShopping }).click();
+		await page.getByTestId("continue-shopping").click();
 		await expect(page).toHaveURL(/\/products$/);
 	});
 
@@ -42,32 +36,31 @@ test.describe("cart page", () => {
 		await expect(
 			page.getByRole("link", { name: PRODUCT_1_TITLE }),
 		).toBeVisible();
-		await expect(page.locator(".join span")).toHaveText("1");
+		await expect(page.getByTestId("cart-qty")).toHaveText("1");
 	});
 
 	test("increments the quantity with the + control", async ({ page }) => {
 		await addProductOneAndOpenCart(page);
 
-		// The quantity stepper is a daisyUI join: [−] [qty] [+].
-		await page.locator(".join").getByRole("button").last().click();
+		await page.getByTestId("cart-qty-increase").click();
 
-		await expect(page.locator(".join span")).toHaveText("2");
+		await expect(page.getByTestId("cart-qty")).toHaveText("2");
 	});
 
 	test("removes a line item", async ({ page }) => {
 		await addProductOneAndOpenCart(page);
 
-		await page.getByRole("button", { name: "Entfernen" }).click();
+		await page.getByTestId("cart-remove").click();
 
-		await expect(page.getByText(TEXT.empty)).toBeVisible();
+		await expect(page.getByTestId("cart-empty")).toBeVisible();
 	});
 
 	test("clears the whole cart", async ({ page }) => {
 		await addProductOneAndOpenCart(page);
 
-		await page.getByRole("button", { name: TEXT.clear }).click();
+		await page.getByTestId("cart-clear").click();
 
-		await expect(page.getByText(TEXT.empty)).toBeVisible();
+		await expect(page.getByTestId("cart-empty")).toBeVisible();
 	});
 
 	test("checks out and shows the order confirmation", async ({ page }) => {
@@ -81,8 +74,8 @@ test.describe("cart page", () => {
 			}),
 		);
 
-		await page.getByRole("button", { name: TEXT.checkout }).click();
+		await page.getByTestId("cart-checkout").click();
 
-		await expect(page.getByText(`${TEXT.orderPlaced} (#42)`)).toBeVisible();
+		await expect(page.getByTestId("cart-confirmation")).toContainText("#42");
 	});
 });
