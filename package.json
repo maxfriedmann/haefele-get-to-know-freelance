@@ -25,6 +25,7 @@
 		"@angular/ssr": "^21.2.7",
 		"@ngrx/effects": "^21.1.0",
 		"@ngrx/entity": "^21.1.0",
+		"@ngrx/operators": "^21.1.0",
 		"@ngrx/store": "^21.1.0",
 		"@ngrx/store-devtools": "^21.1.0",
 		"@ngx-translate/core": "^17.0.0",

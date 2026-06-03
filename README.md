@@ -50,6 +50,13 @@ npm run serve:ssr:shop    # run ssr node process (build first!!!)
 #### I18N
 
 #### Assumptions & Trade-Offs
+##### all products available locally
+The NgRx store implementation relies on the fact that we only need to handle a few products. In a real world scenario with thousands of products and each with hundreds of variations, images, prices etc.pp this approach would be inefficient. We would need paginated api access (which fakestoreapi does not offer afaik) and we would need some sort of "product readiness" marker like Intershop does which allows to fetch few details for e.g. a list component with thousands of products and a more detailed version for a PDP.
+
+This is especially bad with SSR + HTTP transfer cache as it bloats up the initial data that customers download on their first visit. Depending on the situation, a better approach could be:
+- do not load products during SSR at all, or just a very few details
+- show skeleton loaders and hydrate products client side
+- add TransferState to also remove the initial store load (which would add zero improvements right now as the HTTP transfer cache mitigates the fetches)
 
 ### What I would improve with more time / "in production"
 - I would use the project's 
@@ -63,6 +70,7 @@ npm run serve:ssr:shop    # run ssr node process (build first!!!)
 - I would not use RxJS, especially not Observables for http calls
 - treat currency based on the selected language / ICM store
 - add a breadcrumb navigation
+- use image sizes that match the dimensions in the shop (like wsrv.nl or bunny.net optimize)
 
 
 ---

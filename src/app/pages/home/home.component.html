@@ -8,7 +8,9 @@
     title="{{ 'home.topRatedProducts' | translate }}"
     [level]="2"
   ></haefele-page-header>
-  <haefele-product-grid [products]="(topRatedProducts$ | async) ?? []"></haefele-product-grid>
+  <haefele-store-loading [status]="(status$ | async) ?? 'idle'">
+    <haefele-product-grid [products]="(topRatedProducts$ | async) ?? []"></haefele-product-grid>
+  </haefele-store-loading>
 </div>
 
 <button class="btn btn-lg btn-soft btn-primary btn-block mt-16" routerLink="/products">

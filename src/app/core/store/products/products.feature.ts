@@ -23,11 +23,11 @@ export const productsFeature = createFeature({
 	name: "products",
 	reducer: createReducer(
 		initialProductsState,
-		on(ProductsActions.loadProducts, (state) => ({
-			...state,
-			status: "loading",
-			error: null,
-		})),
+		on(ProductsActions.loadProducts, (state) =>
+			state.status === "loaded"
+				? state
+				: { ...state, status: "loading", error: null },
+		),
 		on(ProductsActions.loadProductsSuccess, (state, { products }) =>
 			productsAdapter.setAll(products, { ...state, status: "loaded" }),
 		),
