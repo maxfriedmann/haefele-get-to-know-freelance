@@ -15,9 +15,7 @@ test.describe("language chooser", () => {
 	test("defaults to English", async ({ page }) => {
 		await page.goto("/");
 
-		await expect(
-			page.getByRole("link", { name: NAV.en.home }),
-		).toBeVisible();
+		await expect(page.getByRole("link", { name: NAV.en.home })).toBeVisible();
 		await expect(page.getByTestId("language-trigger")).toContainText("en");
 	});
 
@@ -25,19 +23,13 @@ test.describe("language chooser", () => {
 		await page.goto("/");
 		await selectLanguage(page, "de");
 
-		await expect(
-			page.getByRole("link", { name: NAV.de.home }),
-		).toBeVisible();
+		await expect(page.getByRole("link", { name: NAV.de.home })).toBeVisible();
 		await expect(
 			page.getByRole("link", { name: NAV.de.products }),
 		).toBeVisible();
-		await expect(
-			page.getByRole("link", { name: NAV.de.cart }),
-		).toBeVisible();
+		await expect(page.getByRole("link", { name: NAV.de.cart })).toBeVisible();
 		// English labels are gone.
-		await expect(
-			page.getByRole("link", { name: NAV.en.home }),
-		).toHaveCount(0);
+		await expect(page.getByRole("link", { name: NAV.en.home })).toHaveCount(0);
 	});
 
 	test("closes the dropdown after selecting", async ({ page }) => {
@@ -61,9 +53,7 @@ test.describe("language chooser", () => {
 		await page.reload();
 
 		// Restored from localStorage on load — no need to reselect.
-		await expect(
-			page.getByRole("link", { name: NAV.de.home }),
-		).toBeVisible();
+		await expect(page.getByRole("link", { name: NAV.de.home })).toBeVisible();
 		await expect(page.getByTestId("language-trigger")).toContainText("de");
 	});
 });

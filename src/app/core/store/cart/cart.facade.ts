@@ -20,7 +20,9 @@ export class CartFacade {
 	readonly entries$ = this.store.select(selectCartEntries);
 	readonly total$ = this.store.select(selectCartTotal);
 	readonly count$ = this.store.select(selectCartCount);
-	readonly checkoutStatus$ = this.store.select(cartFeature.selectCheckoutStatus);
+	readonly checkoutStatus$ = this.store.select(
+		cartFeature.selectCheckoutStatus,
+	);
 	readonly cartId$ = this.store.select(cartFeature.selectCartId);
 
 	// writes
