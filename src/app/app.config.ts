@@ -25,7 +25,7 @@ import {
 	provideTranslateService,
 } from "@ngx-translate/core";
 import { routes } from "./app.routes";
-import { userAgentInterceptor } from "./core/interceptors/user-agent.interceptor";
+import { baseUrlInterceptor } from "./core/interceptors/base-url.interceptor";
 import { CartEffects } from "./core/store/cart/cart.effects";
 import { cartFeature } from "./core/store/cart/cart.feature";
 import { ProductsEffects } from "./core/store/products/products.effects";
@@ -35,7 +35,7 @@ import { BundledTranslateLoader } from "./i18n/translate.loader";
 export const appConfig: ApplicationConfig = {
 	providers: [
 		provideBrowserGlobalErrorListeners(),
-		provideHttpClient(withFetch(), withInterceptors([userAgentInterceptor])),
+		provideHttpClient(withFetch(), withInterceptors([baseUrlInterceptor])),
 		provideRouter(routes),
 		provideStore(),
 		provideStoreDevtools({

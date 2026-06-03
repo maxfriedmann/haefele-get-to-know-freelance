@@ -104,7 +104,7 @@ Component unit tests are expensive but important to reduce unattended component 
 ### What consumed the most time
 
 - finding the right line between Intershop PWA state-of-the-art and the current way of using Angular + NgRx
-- figuring out why SSR in a production deployment didn't work. turns out that cloudflare in front of the fakestoreapi blocks SSR requests with a bot challenge, so SSR sends prerendered HTML with an error.
+- figuring out why SSR in a production deployment didn't work. Turns out that cloudflare in front of the fakestoreapi blocks SSR requests with a bot challenge, so SSR sends prerendered HTML with an error. I am now using a local copy of the products inside the public folder, as workaround.
 
 ---
 
