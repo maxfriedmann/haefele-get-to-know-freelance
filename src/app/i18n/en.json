@@ -50,6 +50,7 @@
 		"checkout": "Checkout",
 		"clear": "Clear cart",
 		"remove": "Remove",
-		"orderPlaced": "Order placed! Cart created"
+		"orderPlaced": "Order placed! Cart created",
+		"loadSample": "Load example cart (#1)"
 	}
 }

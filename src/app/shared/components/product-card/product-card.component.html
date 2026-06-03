@@ -13,6 +13,7 @@
   </figure>
   <div class="card-body flex flex-col justify-between">
     <div class="h-full">
+      <div class="badge badge-secondary badge-sm capitalize mb-2">{{ product().category }}</div>
       <div class="card-title line-clamp-2">{{ product().title }}</div>
       <haefele-rating [rate]="product().rating.rate" [count]="product().rating.count" />
       <p class="line-clamp-4 mt-4">{{ product().description }}</p>

@@ -50,6 +50,7 @@
 		"checkout": "Zur Kasse",
 		"clear": "Warenkorb leeren",
 		"remove": "Entfernen",
-		"orderPlaced": "Bestellung aufgegeben! Warenkorb erstellt"
+		"orderPlaced": "Bestellung aufgegeben! Warenkorb erstellt",
+		"loadSample": "Beispiel-Warenkorb laden (#1)"
 	}
 }

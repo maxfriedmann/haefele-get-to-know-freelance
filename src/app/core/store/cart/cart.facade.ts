@@ -26,6 +26,10 @@ export class CartFacade {
 	readonly cartId$ = this.store.select(cartFeature.selectCartId);
 
 	// writes
+	loadCart(id: number): void {
+		this.store.dispatch(CartActions.loadCart({ id }));
+	}
+
 	add(productId: number): void {
 		this.store.dispatch(CartActions.addToCart({ productId }));
 	}

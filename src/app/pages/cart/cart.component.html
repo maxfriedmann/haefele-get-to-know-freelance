@@ -1,5 +1,13 @@
 <haefele-page-header [title]="'cart.title' | translate"></haefele-page-header>
 
+@if (isDev) {
+  <div class="mb-4">
+    <button class="btn btn-sm btn-outline" (click)="loadSampleCart()">
+      {{ 'cart.loadSample' | translate }}
+    </button>
+  </div>
+}
+
 @if (entries$ | async; as entries) {
   @if (entries.length === 0) {
     <div class="flex flex-col items-center gap-4 py-16">

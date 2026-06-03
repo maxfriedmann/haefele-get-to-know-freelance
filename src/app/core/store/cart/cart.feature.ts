@@ -37,15 +37,31 @@ export const cartFeature = createFeature({
 			const { [productId]: _omit, ...rest } = state.items;
 			return { ...state, items: rest };
 		}),
-		on(CartActions.clearCart, (state) => ({
+		// empties items immediately; the clearCart$ effect DELETEs the server cart
+		// (it still needs the cartId, so we keep it until deleteCartSuccess)
+		on(CartActions.clearCart, (state) => ({ ...state, items: {} })),
+
+		// --- GET /carts/:id ---
+		on(CartActions.loadCart, (state) => ({
 			...state,
-			items: {},
-			cartId: null,
-			checkoutStatus: "idle",
+			checkoutStatus: "loading",
 			error: null,
 		})),
+		on(CartActions.loadCartSuccess, (state, { cart }) => ({
+			...state,
+			items: Object.fromEntries(
+				cart.products.map((p) => [p.productId, p.quantity]),
+			),
+			cartId: cart.id,
+			checkoutStatus: "loaded",
+		})),
+		on(CartActions.loadCartFailure, (state, { error }) => ({
+			...state,
+			checkoutStatus: "error",
+			error,
+		})),
 
-		// --- async checkout triad ---
+		// --- POST/PUT checkout triad ---
 		on(CartActions.checkout, (state) => ({
 			...state,
 			checkoutStatus: "loading",
@@ -57,6 +73,20 @@ export const cartFeature = createFeature({
 			cartId,
 		})),
 		on(CartActions.checkoutFailure, (state, { error }) => ({
+			...state,
+			checkoutStatus: "error",
+			error,
+		})),
+
+		// --- DELETE /carts/:id ---
+		on(CartActions.deleteCartSuccess, (state) => ({
+			...state,
+			items: {},
+			cartId: null,
+			checkoutStatus: "idle",
+			error: null,
+		})),
+		on(CartActions.deleteCartFailure, (state, { error }) => ({
 			...state,
 			checkoutStatus: "error",
 			error,
