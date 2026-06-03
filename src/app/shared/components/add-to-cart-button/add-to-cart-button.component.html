@@ -1,0 +1,13 @@
+<button
+  class="btn transition-colors duration-300 {{ sizeClass() }} {{
+    showAddedToCartMessage() ? 'btn-success' : colorClass()
+  }}"
+  data-testid="add-to-cart-button"
+  (click)="addToCart($event)"
+>
+  @if (showAddedToCartMessage()) {
+    ✓ {{ 'products.addedToCart' | translate }}
+  } @else {
+    {{ 'products.addToCart' | translate }}
+  }
+</button>

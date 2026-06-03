@@ -1,9 +1,7 @@
 import { Component, computed, inject, input, signal } from "@angular/core";
-import { toObservable, toSignal } from "@angular/core/rxjs-interop";
 import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { TranslatePipe } from "@ngx-translate/core";
-import { debounceTime } from "rxjs";
 import type { Product } from "../../../core/models/product.model";
 import { ProductCardComponent } from "../product-card/product-card.component";
 
@@ -59,10 +57,4 @@ export class ProductGridComponent {
 				return products;
 		}
 	});
-
-	detailsClick(product: Product) {
-		this.router.navigate(["/products", product.id]);
-	}
-
-	addToCartClick(product: Product) {}
 }

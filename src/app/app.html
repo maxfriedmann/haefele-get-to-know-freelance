@@ -22,7 +22,14 @@
             }}</a>
           </li>
           <li>
-            <a routerLink="/cart" routerLinkActive="menu-active">{{ 'nav.cart' | translate }}</a>
+            <a routerLink="/cart" routerLinkActive="menu-active" class="indicator"
+              >{{ 'nav.cart' | translate }}
+              @if (cartCount$ | async) {
+                <span class="badge badge-primary badge-xs indicator-item">{{
+                  cartCount$ | async
+                }}</span>
+              }
+            </a>
           </li>
         </ng-template>
 

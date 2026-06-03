@@ -20,9 +20,10 @@
 	},
 	"cSpell.words": ["haefele"],
 	"[markdown]": {
-		"editor.defaultFormatter": "yzhang.markdown-all-in-one"
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"i18n-ally.localesPaths": ["src/app/i18n"],
 	"i18n-ally.keystyle": "nested",
-	"i18n-ally.sourceLanguage": "de"
+	"i18n-ally.sourceLanguage": "de",
+	"editor.wordWrap": "on"
 }

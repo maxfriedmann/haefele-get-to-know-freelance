@@ -21,6 +21,8 @@ import {
 	provideTranslateService,
 } from "@ngx-translate/core";
 import { routes } from "./app.routes";
+import { CartEffects } from "./core/store/cart/cart.effects";
+import { cartFeature } from "./core/store/cart/cart.feature";
 import { ProductsEffects } from "./core/store/products/products.effects";
 import { productsFeature } from "./core/store/products/products.feature";
 import { BundledTranslateLoader } from "./i18n/translate.loader";
@@ -39,7 +41,8 @@ export const appConfig: ApplicationConfig = {
 			traceLimit: 75,
 		}),
 		provideState(productsFeature),
-		provideEffects(ProductsEffects),
+		provideState(cartFeature),
+		provideEffects(ProductsEffects, CartEffects),
 		provideClientHydration(withEventReplay(), withHttpTransferCacheOptions({})),
 		provideTranslateService({
 			lang: "de",

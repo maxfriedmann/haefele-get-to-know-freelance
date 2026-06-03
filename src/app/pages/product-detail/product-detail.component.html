@@ -1,37 +1,50 @@
 <button class="btn btn-link" routerLink="/products">Back to Products</button>
 
-@if (product$ | async; as product) {
-  <div class="flex flex-col gap-8 pt-16">
-    <div class="flex flex-col md:flex-row gap-24 justify-evenly items-start">
-      <img [src]="product.image" [alt]="product.title" class="w-full md:w-1/2" />
-      <div class="flex flex-col gap-16">
-        <div class="flex flex-col gap-2">
-          <haefele-rating [rate]="product.rating.rate" [count]="product.rating.count" />
-          <h2 class="text-5xl font-semibold">{{ product.title }}</h2>
-          <div class="flex flex-col md:flex-row gap-1 md:gap-4">
-            <span class="badge badge-secondary"
-              >{{ 'products.articleNumber' | translate }}: {{ product.id }}</span
-            >
-            <span class="badge badge-secondary"
-              >{{ 'products.category' | translate }}: {{ product.category }}</span
-            >
+<haefele-store-loading
+  [status]="productsLoadingStatus$ | async"
+  [error]="productsLoadingError$ | async"
+>
+  @if (product$ | async; as product) {
+    <div class="flex flex-col gap-8 pt-16">
+      <div class="flex flex-col md:flex-row gap-24 justify-evenly items-start">
+        <img [src]="product.image" [alt]="product.title" class="w-full md:w-1/2" />
+        <div class="flex flex-col gap-16">
+          <div class="flex flex-col gap-2">
+            <haefele-rating [rate]="product.rating.rate" [count]="product.rating.count" />
+            <h2 class="text-5xl font-semibold">{{ product.title }}</h2>
+            <div class="flex flex-col md:flex-row gap-1 md:gap-4">
+              <span class="badge badge-secondary"
+                >{{ 'products.articleNumber' | translate }}: {{ product.id }}</span
+              >
+              <span class="badge badge-secondary"
+                >{{ 'products.category' | translate }}: {{ product.category }}</span
+              >
+            </div>
           </div>
+          <p>{{ product.description }}</p>
+          <p class="text-4xl font-bold text-end">{{ product.price | currency }}</p>
+          <haefele-add-to-cart-button
+            [productId]="product.id"
+            colorClass="btn-primary"
+            sizeClass="btn-block btn-lg"
+          />
         </div>
-        <p>{{ product.description }}</p>
-        <p class="text-4xl font-bold text-end">{{ product.price | currency }}</p>
-        <button class="btn btn-lg btn-primary btn-block" (click)="addToCart(product)">
-          {{ 'products.addToCart' | translate }}
-        </button>
       </div>
     </div>
-  </div>
 
-  <!-- products in the same category -->
-  <div class="flex flex-col gap-8 pt-24">
-    <haefele-page-header
-      [title]="'products.relatedProducts' | translate"
-      [level]="2"
-    ></haefele-page-header>
-    <haefele-product-grid [products]="(relatedProducts$ | async) ?? []"></haefele-product-grid>
-  </div>
-}
+    <!-- products in the same category -->
+    <div class="flex flex-col gap-8 pt-24">
+      <haefele-page-header
+        [title]="'products.relatedProducts' | translate"
+        [level]="2"
+      ></haefele-page-header>
+      <haefele-product-grid [products]="(relatedProducts$ | async) ?? []"></haefele-product-grid>
+    </div>
+  } @else {
+    <div class="m-16">
+      <div class="alert alert-error">
+        {{ 'products.productNotFound' | translate }}
+      </div>
+    </div>
+  }
+</haefele-store-loading>

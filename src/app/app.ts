@@ -1,4 +1,8 @@
-import { isPlatformBrowser, NgTemplateOutlet } from "@angular/common";
+import {
+	AsyncPipe,
+	isPlatformBrowser,
+	NgTemplateOutlet,
+} from "@angular/common";
 import {
 	Component,
 	type ElementRef,
@@ -14,8 +18,10 @@ import {
 	RouterLinkActive,
 	RouterOutlet,
 } from "@angular/router";
+import { Store } from "@ngrx/store";
 import { TranslatePipe } from "@ngx-translate/core";
 import { filter } from "rxjs";
+import { selectCartCount } from "./core/store/cart/cart.selectors";
 import { LanguageChooserComponent } from "./shared/components/language-chooser/language-chooser.component";
 
 @Component({
@@ -27,6 +33,7 @@ import { LanguageChooserComponent } from "./shared/components/language-chooser/l
 		RouterLinkActive,
 		TranslatePipe,
 		LanguageChooserComponent,
+		AsyncPipe,
 	],
 	templateUrl: "./app.html",
 	styleUrl: "./app.css",
@@ -36,6 +43,8 @@ export class App {
 	private readonly platformId = inject(PLATFORM_ID);
 	private readonly scrollContainer =
 		viewChild.required<ElementRef<HTMLElement>>("scrollContainer");
+
+	cartCount$ = inject(Store).select(selectCartCount);
 
 	constructor() {
 		if (isPlatformBrowser(this.platformId)) {

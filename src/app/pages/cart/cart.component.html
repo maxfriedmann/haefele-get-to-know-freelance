@@ -1,1 +1,82 @@
-CART
+<haefele-page-header [title]="'cart.title' | translate"></haefele-page-header>
+
+@if (entries$ | async; as entries) {
+  @if (entries.length === 0) {
+    <div class="flex flex-col items-center gap-4 py-16">
+      <p class="text-xl text-base-content/60">{{ 'cart.empty' | translate }}</p>
+      <a routerLink="/products" class="btn btn-primary">
+        {{ 'cart.continueShopping' | translate }}
+      </a>
+    </div>
+  } @else {
+    <div class="flex flex-col gap-4">
+      @for (entry of entries; track entry.product.id) {
+        <div class="flex items-center gap-4 rounded-box bg-base-200 p-4">
+          <img
+            [src]="entry.product.image"
+            [alt]="entry.product.title"
+            class="h-20 w-20 object-contain"
+          />
+          <div class="min-w-0 flex-1">
+            <a
+              [routerLink]="['/products', entry.product.id]"
+              class="font-semibold line-clamp-1 hover:underline"
+              >{{ entry.product.title }}</a
+            >
+            <p class="text-sm text-base-content/60">{{ entry.product.price | appCurrency }}</p>
+          </div>
+
+          <div class="join">
+            <button
+              class="btn btn-sm join-item"
+              (click)="setQuantity(entry.product.id, entry.quantity - 1)"
+            >
+              −
+            </button>
+            <span class="btn btn-sm join-item pointer-events-none">{{ entry.quantity }}</span>
+            <button
+              class="btn btn-sm join-item"
+              (click)="setQuantity(entry.product.id, entry.quantity + 1)"
+            >
+              +
+            </button>
+          </div>
+
+          <p class="w-24 text-end font-bold">{{ entry.lineTotal | appCurrency }}</p>
+
+          <button
+            class="btn btn-square btn-ghost btn-sm text-error"
+            (click)="remove(entry.product.id)"
+            [attr.aria-label]="'cart.remove' | translate"
+          >
+            ✕
+          </button>
+        </div>
+      }
+    </div>
+
+    <div class="mt-8 flex flex-col items-end gap-4">
+      <p class="text-2xl font-bold">
+        {{ 'cart.total' | translate }}: {{ total$ | async | appCurrency }}
+      </p>
+
+      @if (cartId$ | async; as cartId) {
+        <div class="alert alert-success">{{ 'cart.orderPlaced' | translate }} (#{{ cartId }})</div>
+      }
+
+      <div class="flex gap-4">
+        <button class="btn btn-ghost" (click)="clear()">{{ 'cart.clear' | translate }}</button>
+        <button
+          class="btn btn-primary btn-lg"
+          [disabled]="(checkoutStatus$ | async) === 'loading'"
+          (click)="checkout()"
+        >
+          @if ((checkoutStatus$ | async) === 'loading') {
+            <span class="loading loading-spinner"></span>
+          }
+          {{ 'cart.checkout' | translate }}
+        </button>
+      </div>
+    </div>
+  }
+}

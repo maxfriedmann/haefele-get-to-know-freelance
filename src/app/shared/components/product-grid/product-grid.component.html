@@ -41,11 +41,7 @@
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
   @for (product of visibleProducts(); track product.id) {
-    <haefele-product-card
-      [product]="product"
-      (addToCartClick)="addToCartClick(product)"
-      (detailsClick)="detailsClick(product)"
-    ></haefele-product-card>
+    <haefele-product-card [product]="product"></haefele-product-card>
   } @empty {
     <div class="col-span-full text-center py-16 text-xl text-gray-500">
       {{ 'products.noProductsFound' | translate }}
