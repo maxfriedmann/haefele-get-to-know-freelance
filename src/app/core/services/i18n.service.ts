@@ -39,11 +39,11 @@ export class I18nService {
 	readonly languages = [
 		{
 			code: "en",
-			icon: "https://cdn.smallstack.com/images/flags/flag-icon-css/flags/4x3/us.svg",
+			icon: "/flags/us.svg",
 		},
 		{
 			code: "de",
-			icon: "https://cdn.smallstack.com/images/flags/flag-icon-css/flags/4x3/de.svg",
+			icon: "/flags/de.svg",
 		},
 	] as const;
 
