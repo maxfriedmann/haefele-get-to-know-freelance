@@ -1,0 +1,13 @@
+{
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"framework": null,
+	"buildCommand": "ng build",
+	"installCommand": "npm install",
+	"outputDirectory": "dist/shop/browser",
+	"rewrites": [{ "source": "/(.*)", "destination": "/api" }],
+	"functions": {
+		"api/index.mjs": {
+			"includeFiles": "dist/shop/server/**"
+		}
+	}
+}
