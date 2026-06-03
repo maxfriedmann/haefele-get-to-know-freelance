@@ -18,10 +18,9 @@ import {
 	RouterLinkActive,
 	RouterOutlet,
 } from "@angular/router";
-import { Store } from "@ngrx/store";
 import { TranslatePipe } from "@ngx-translate/core";
 import { filter } from "rxjs";
-import { selectCartCount } from "./core/store/cart/cart.selectors";
+import { CartFacade } from "./core/store/cart/cart.facade";
 import { LanguageChooserComponent } from "./shared/components/language-chooser/language-chooser.component";
 
 @Component({
@@ -44,7 +43,7 @@ export class App {
 	private readonly scrollContainer =
 		viewChild.required<ElementRef<HTMLElement>>("scrollContainer");
 
-	cartCount$ = inject(Store).select(selectCartCount);
+	cartCount$ = inject(CartFacade).count$;
 
 	constructor() {
 		if (isPlatformBrowser(this.platformId)) {

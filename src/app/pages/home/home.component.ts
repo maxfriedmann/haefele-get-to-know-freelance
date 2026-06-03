@@ -1,11 +1,8 @@
 import { AsyncPipe } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { RouterLink } from "@angular/router";
-import { Store } from "@ngrx/store";
 import { TranslatePipe } from "@ngx-translate/core";
-import { ProductsActions } from "../../core/store/products/products.actions";
-import { productsFeature } from "../../core/store/products/products.feature";
-import { selectTopRatedProducts } from "../../core/store/products/products.selectors";
+import { ProductsFacade } from "../../core/store/products/products.facade";
 import { PageHeaderComponent } from "../../shared/components/page-header/page-header.component";
 import { ProductGridComponent } from "../../shared/components/product-grid/product-grid.component";
 import { StoreLoadingComponent } from "../../shared/components/store-loading/store-loading.component";
@@ -22,12 +19,12 @@ import { StoreLoadingComponent } from "../../shared/components/store-loading/sto
 	templateUrl: "./home.component.html",
 })
 export class HomeComponent {
-	private readonly store = inject(Store);
+	private readonly productsFacade = inject(ProductsFacade);
 
-	topRatedProducts$ = this.store.select(selectTopRatedProducts);
-	status$ = this.store.select(productsFeature.selectStatus);
+	topRatedProducts$ = this.productsFacade.topRatedProducts$;
+	status$ = this.productsFacade.status$;
 
 	constructor() {
-		this.store.dispatch(ProductsActions.loadProducts());
+		this.productsFacade.load();
 	}
 }

@@ -1,7 +1,6 @@
 import { Component, inject, input, signal } from "@angular/core";
-import { Store } from "@ngrx/store";
 import { TranslatePipe } from "@ngx-translate/core";
-import { CartActions } from "../../../core/store/cart/cart.actions";
+import { CartFacade } from "../../../core/store/cart/cart.facade";
 
 @Component({
 	selector: "haefele-add-to-cart-button",
@@ -10,7 +9,7 @@ import { CartActions } from "../../../core/store/cart/cart.actions";
 })
 export class AddToCartButtonComponent {
 	// in a real-world app we would most likely keep this component dumb and emit click events to the parent component which would need to handle the dispatching. This would make testing easier.
-	private readonly store = inject(Store);
+	private readonly cartFacade = inject(CartFacade);
 
 	productId = input.required<number>();
 	/** daisyUI color modifier shown in the idle state (e.g. "btn-secondary", "btn-primary"). */
@@ -23,7 +22,7 @@ export class AddToCartButtonComponent {
 	addToCart(event: MouseEvent) {
 		// stop the click from bubbling to a surrounding routerLink (e.g. the product card).
 		event.stopPropagation();
-		this.store.dispatch(CartActions.addToCart({ productId: this.productId() }));
+		this.cartFacade.add(this.productId());
 		// the reducer mutates local state synchronously, so we can confirm instantly.
 		this.showAddedToCartMessage.set(true);
 		setTimeout(() => this.showAddedToCartMessage.set(false), 2000);
