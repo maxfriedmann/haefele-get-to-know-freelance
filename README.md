@@ -5,6 +5,10 @@ designed homepage, running against the public "Fake Store API".
 > **Status:** This README starts as a decision log and is filled out as the
 > implementation lands.
 
+> **AI Usage:** I wrote the code myself and used Claude Code for side-by-side 
+> learning (as I usually do). Especially the greenfield implementation
+> of the new functional styled NgRx Store setup was fairly new to me and required
+> some assistance.
 ---
 
 ## Overview
@@ -53,10 +57,10 @@ npm run serve:ssr:shop    # run ssr node process (build first!!!)
 ##### all products available locally
 The NgRx store implementation relies on the fact that we only need to handle a few products. In a real world scenario with thousands of products and each with hundreds of variations, images, prices etc.pp this approach would be inefficient. We would need paginated api access (which fakestoreapi does not offer afaik) and we would need some sort of "product readiness" marker like Intershop does which allows to fetch few details for e.g. a list component with thousands of products and a more detailed version for a PDP.
 
-This is especially bad with SSR + HTTP transfer cache as it bloats up the initial data that customers download on their first visit. Depending on the situation, a better approach could be:
-- do not load products during SSR at all, or just a very few details
-- show skeleton loaders and hydrate products client side
-- add TransferState to also remove the initial store load (which would add zero improvements right now as the HTTP transfer cache mitigates the fetches)
+The current approach is especially bad with SSR + HTTP transfer cache as it bloats up the initial data that customers download on their first visit. Depending on the situation, a better approach could be:
+- do not load products during SSR at all, or just very few details
+- show skeleton loaders client-side and hydrate products after page is loaded
+- add TransferState for a serialized copy of the NgRx store to also remove the initial store load (which would add very less improvements right now as the HTTP transfer cache mitigates the fetches)
 
 ### What I would improve with more time / "in production"
 - I would use the project's 
